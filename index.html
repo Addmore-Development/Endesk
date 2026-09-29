@@ -1,0 +1,1404 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10283b">
+  <meta name="description" content="ENDESK Conglomerate — automotive, dealership, procurement, general supply and business services in South Africa.">
+  <title>ENDESK Conglomerate | Automotive & General Supply</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #10283b;
+      --navy-dark: #091925;
+      --navy-light: #244a62;
+      --orange: #e1a24b;
+      --cream: #f8f5ef;
+      --pale: #f1f4f5;
+      --muted: #61717c;
+      --line: #dfe5e7;
+      --white: #fff;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--navy);
+      background: var(--white);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 15px;
+      color: #bc8335;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      font-family: Manrope, Arial, sans-serif;
+      letter-spacing: -.045em;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.14;
+    }
+
+    h3 { line-height: 1.25; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--navy-dark);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.45);
+      color: white;
+    }
+
+    .btn-navy {
+      color: white;
+      background: var(--navy);
+    }
+
+    /* Header */
+
+    .topbar {
+      background: var(--navy-dark);
+      color: #d5e0e7;
+      font-size: 12px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-block: 9px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.98);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-symbol {
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      background: var(--navy);
+      color: var(--orange);
+      font: 800 27px Manrope, sans-serif;
+      letter-spacing: -.08em;
+    }
+
+    .brand-name {
+      display: block;
+      font: 800 23px Manrope, sans-serif;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 5px;
+      color: #77838b;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .29em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-links a:not(.nav-button):hover {
+      color: #b98235;
+    }
+
+    .nav-button {
+      padding: 12px 19px;
+      border-radius: 5px;
+      background: var(--navy);
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      background: var(--navy-dark);
+      color: white;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: .58;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(6,20,31,.98) 0%,
+        rgba(8,28,44,.92) 37%,
+        rgba(9,27,43,.36) 100%
+      );
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      min-height: 620px;
+      padding-block: 85px;
+    }
+
+    .hero-copy { max-width: 720px; }
+
+    .hero .eyebrow { color: #eac37f; }
+
+    .hero h1 {
+      font-size: clamp(45px, 6vw, 79px);
+      line-height: 1.06;
+      margin-bottom: 23px;
+    }
+
+    .hero h1 em {
+      color: #e1b66f;
+      font-style: normal;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #d6e1e7;
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 33px;
+    }
+
+    .hero-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 56px;
+      color: #e0e7ec;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hero-bottom span::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    /* Audience */
+
+    .audience {
+      padding-block: 65px 72px;
+      background: var(--cream);
+    }
+
+    .section-heading {
+      max-width: 830px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading p {
+      max-width: 700px;
+      color: var(--muted);
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+    }
+
+    .audience-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 102px;
+      padding: 23px;
+      background: white;
+      border: 1px solid #ebe5da;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .audience-card .number {
+      color: #ba833e;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* About */
+
+    .section { padding-block: 100px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      min-height: 460px;
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+    }
+
+    .about-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        0deg, rgba(9,25,37,.65), transparent 60%
+      );
+    }
+
+    .year-tag {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      z-index: 1;
+      padding: 18px 23px;
+      background: white;
+    }
+
+    .year-tag strong {
+      display: block;
+      font: 800 36px Manrope, sans-serif;
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .year-tag small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .about-copy p {
+      color: #50616c;
+      font-size: 16px;
+    }
+
+    .about-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 22px;
+      margin-top: 29px;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-facts strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .about-facts small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Automotive services */
+
+    .automotive {
+      background: var(--navy);
+      color: white;
+    }
+
+    .automotive .eyebrow { color: #e9bf79; }
+
+    .automotive .section-heading p {
+      color: #cad7df;
+    }
+
+    .auto-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .auto-card {
+      overflow: hidden;
+      background: #18364b;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .auto-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .auto-card-body {
+      padding: 28px;
+    }
+
+    .auto-card .number {
+      color: #e6b870;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .15em;
+    }
+
+    .auto-card h3 {
+      font-size: 23px;
+      margin: 11px 0 13px;
+    }
+
+    .auto-card p {
+      font-size: 14px;
+      color: #c3d1da;
+    }
+
+    /* Wider services */
+
+    .other-services {
+      background: #fff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      background: #f0f4f6;
+      color: #ac7936;
+      font: 800 18px Manrope, sans-serif;
+    }
+
+    .service-card h3 {
+      margin: 23px 0 10px;
+      font-size: 22px;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Values */
+
+    .values {
+      background: var(--cream);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .value {
+      padding-top: 22px;
+      border-top: 3px solid #d4a45e;
+    }
+
+    .value h3 { font-size: 21px; }
+
+    .value p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Contact */
+
+    .contact {
+      background: #f4f6f7;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .contact-details strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #8b743e;
+    }
+
+    .contact-details a,
+    .contact-details span {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 20px;
+      padding: 36px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 45px rgba(16,40,59,.06);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid #d9e1e5;
+      border-radius: 3px;
+      background: #fbfcfc;
+      color: var(--navy);
+      font-size: 14px;
+      outline-offset: 3px;
+    }
+
+    .field textarea { resize: vertical; }
+
+    .form-note {
+      margin: -6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding-top: 65px;
+      color: white;
+      background: var(--navy-dark);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 55px;
+    }
+
+    .footer .brand-symbol {
+      background: #e4af62;
+      color: var(--navy);
+    }
+
+    .footer .brand-subtitle { color: #b5c4cf; }
+
+    .footer p {
+      max-width: 380px;
+      margin-top: 22px;
+      color: #a8bbc8;
+      font-size: 13px;
+    }
+
+    .footer h4 {
+      margin: 0 0 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 11px;
+      color: #bdccd6;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-block: 24px;
+      margin-top: 55px;
+      border-top: 1px solid rgba(255,255,255,.13);
+      color: #8da5b5;
+      font-size: 12px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1000px) {
+      .nav-links { gap: 15px; font-size: 12px; }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-image,
+      .about-image img { min-height: 330px; height: 330px; }
+
+      .auto-grid,
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(var(--max), calc(100% - 32px));
+      }
+
+      .topbar .container {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .nav { min-height: 70px; }
+
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 16px;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 15px 20px rgba(0,0,0,.07);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a { padding: 12px 10px; }
+
+      .nav-button { text-align: center; }
+
+      .hero,
+      .hero-inner { min-height: 540px; }
+
+      .hero h1 { font-size: 44px; }
+
+      .hero p { font-size: 15px; }
+
+      .hero-image { object-position: 65% center; }
+
+      .hero::after {
+        background: rgba(5,20,32,.78);
+      }
+
+      .section { padding-block: 70px; }
+
+      .audience-grid,
+      .auto-grid,
+      .services-grid,
+      .values-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .audience-card { min-height: 80px; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .contact-form { padding: 23px; }
+    }
+  
+    /* ===== Additions ===== */
+    img { background: linear-gradient(135deg,#18364b,#244a62); }
+    .img-fail { background: linear-gradient(135deg,#18364b,#244a62); }
+    .img-fail img { opacity: 0; }
+
+    .ticker { background: var(--orange); color: var(--navy-dark); overflow: hidden; border-block: 1px solid rgba(9,25,37,.12); }
+    .ticker-track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
+    .ticker span { padding: 14px 30px; font: 800 12px Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+    .ticker span::after { content: "◆"; margin-left: 60px; opacity: .55; }
+
+    .audience { background: var(--cream); }
+    .aud-card { position: relative; overflow: hidden; min-height: 300px; display: flex; align-items: flex-end; background: var(--navy); color: white; }
+    .aud-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .aud-card:hover img { transform: scale(1.06); }
+    .aud-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,20,31,.95) 8%, rgba(6,20,31,.25) 70%); }
+    .aud-body { position: relative; z-index: 1; padding: 26px; }
+    .aud-body .number { color: #e6b870; font-size: 11px; font-weight: 800; letter-spacing: .15em; }
+    .aud-body h3 { margin: 8px 0 8px; font-size: 21px; }
+    .aud-body p { margin: 0; color: #c9d6de; font-size: 13.5px; line-height: 1.6; }
+    .aud-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+
+    .service-card.has-img { padding: 0; overflow: hidden; }
+    .service-card.has-img .thumb { height: 190px; overflow: hidden; background: linear-gradient(135deg,#18364b,#244a62); }
+    .service-card.has-img .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .service-card.has-img:hover .thumb img { transform: scale(1.06); }
+    .service-card.has-img .body { padding: 26px 30px 30px; }
+    .service-card.has-img h3 { margin: 0 0 10px; }
+
+    .gallery { background: var(--navy-dark); padding-block: 70px 80px; color: white; overflow: hidden; }
+    .gallery .section-heading p { color: #b5c4cf; }
+    .gallery .eyebrow { color: #e9bf79; }
+    .loop { overflow: hidden; margin-top: 10px; -webkit-mask-image: linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image: linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+    .loop-track { display: flex; gap: 16px; width: max-content; animation: scroll 55s linear infinite; }
+    .loop:hover .loop-track, .ticker:hover .ticker-track { animation-play-state: paused; }
+    .tile { position: relative; flex: 0 0 300px; height: 210px; overflow: hidden; background: linear-gradient(135deg,#18364b,#244a62); }
+    .tile img { width: 100%; height: 100%; object-fit: cover; }
+    .tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,20,31,.85), transparent 55%); }
+    .tile b { position: absolute; z-index: 1; left: 18px; bottom: 14px; font: 800 14px Manrope, sans-serif; letter-spacing: -.01em; }
+    .tile b i { display: block; margin-bottom: 3px; color: #e6b870; font: 800 10px Manrope, sans-serif; letter-spacing: .15em; font-style: normal; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .ticker-track, .loop-track { animation: none; } .loop, .ticker { overflow-x: auto; } }
+
+    @media (max-width: 1000px) { .aud-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 760px) { .aud-grid { grid-template-columns: 1fr; } .aud-card { min-height: 260px; } .tile { flex-basis: 240px; height: 180px; } .gallery { padding-block: 55px 60px; } }
+</style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <span>Monday – Friday: 8:30am – 5:00pm</span>
+      <span>
+        <a href="mailto:info@endesk.co.za">info@endesk.co.za</a>
+        &nbsp; | &nbsp;
+        <a href="tel:+27626566427">062 656 6427</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="#home" class="brand" aria-label="ENDESK home">
+        <span class="brand-symbol">E</span>
+        <span>
+          <span class="brand-name">ENDESK</span>
+          <span class="brand-subtitle">CONGLOMERATE</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >☰</button>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About Us</a>
+        <a href="#automotive">Automotive</a>
+        <a href="#audience">Who We Work With</a>
+        <a href="#services">Other Services</a>
+        <a href="#values">Our Values</a>
+        <a href="#contact" class="nav-button">Contact Us</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85"
+        alt="Automotive industry illustration"
+      >
+
+      <div class="container hero-inner">
+        <div class="hero-copy">
+
+          <span class="eyebrow">Automotive & General Supply</span>
+
+          <h1>
+            Moving business<br>
+            <em>forward.</em>
+          </h1>
+
+          <p>
+            ENDESK Conglomerate provides automotive, dealership,
+            sourcing and general-supply solutions for businesses,
+            trade professionals and individuals across South Africa.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#automotive" class="btn btn-primary">
+              Our Automotive Services →
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+              Get in Touch
+            </a>
+          </div>
+
+          <div class="hero-bottom">
+            <span>Established 2006</span>
+            <span>Registered 2014</span>
+            <span>Johannesburg, South Africa</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES TICKER -->
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Vehicle Sourcing</span><span>Dealership Support</span><span>Fleet & Rental Enquiries</span><span>Procurement</span><span>Printing & Branding</span><span>Warehousing</span><span>Recruitment</span><span>Travel & Visa Assistance</span><span>Construction & Farming</span><span>Fishing Accessories</span><span>Vehicle Sourcing</span><span>Dealership Support</span><span>Fleet & Rental Enquiries</span><span>Procurement</span><span>Printing & Branding</span><span>Warehousing</span><span>Recruitment</span><span>Travel & Visa Assistance</span><span>Construction & Farming</span><span>Fishing Accessories</span></div></div>
+
+    <!-- WHO WE WORK WITH -->
+    <section class="audience" id="audience">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Our Market</span>
+          <h2>Who we work with.</h2>
+          <p>Our automotive and supply offering is designed around the requirements of businesses and professionals operating throughout the vehicle value chain.</p>
+        </div>
+        <div class="aud-grid">
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80" alt="Automotive distributors and wholesalers" loading="lazy">
+            <div class="aud-body"><span class="number">01</span><h3>Automotive distributors and wholesalers</h3><p>Bulk sourcing and dependable supply contacts for distribution and wholesale operations.</p></div>
+          </article>
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80" alt="Dealers and dealerships" loading="lazy">
+            <div class="aud-body"><span class="number">02</span><h3>Dealers and dealerships</h3><p>Used-vehicle sourcing and dealership support built on South African market relationships.</p></div>
+          </article>
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=900&q=80" alt="Vehicle leasing and rental companies" loading="lazy">
+            <div class="aud-body"><span class="number">03</span><h3>Vehicle leasing and rental companies</h3><p>Commercial and fleet enquiries for leasing businesses and rental operators, subject to availability.</p></div>
+          </article>
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=80" alt="Mechanics and automotive technicians" loading="lazy">
+            <div class="aud-body"><span class="number">04</span><h3>Mechanics and automotive technicians</h3><p>A single point of contact for parts and supply enquiries from workshops and technicians.</p></div>
+          </article>
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=900&q=80" alt="Procurement and maintenance professionals" loading="lazy">
+            <div class="aud-body"><span class="number">05</span><h3>Procurement and maintenance professionals</h3><p>Responsive sourcing support for teams keeping vehicles and equipment running.</p></div>
+          </article>
+          <article class="aud-card">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80" alt="Local importers and trade" loading="lazy">
+            <div class="aud-body"><span class="number">06</span><h3>Local importers and trade</h3><p>Practical support for importers and trade partners across the wider vehicle value chain.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"
+            alt="Automotive photograph"
+            loading="lazy"
+          >
+          <div class="year-tag">
+            <strong>2006</strong>
+            <small>Year established</small>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">About Endesk</span>
+          <h2>One partner. Multiple business solutions.</h2>
+
+          <p>
+            ENDESK Conglomerate is a South African multipurpose
+            service provider established in 2006 and registered
+            in 2014.
+          </p>
+
+          <p>
+            Owned by Mr Anthony Osawaru Okundaye and
+            Mrs Lungile Promise Okundaye, the company offers
+            practical solutions across automotive, general supply,
+            printing, business support and related industries.
+          </p>
+
+          <p>
+            Our approach centres on understanding each client's
+            requirements, connecting them with appropriate
+            solutions and maintaining dependable working relationships.
+          </p>
+
+          <div class="about-facts">
+            <div>
+              <strong>Johannesburg</strong>
+              <small>South African base</small>
+            </div>
+            <div>
+              <strong>Multi-service</strong>
+              <small>Commercial capabilities</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUTOMOTIVE SERVICES -->
+    <section class="section automotive" id="automotive">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Automotive Solutions</span>
+          <h2>Supporting the automotive trade.</h2>
+          <p>
+            From vehicle enquiries to business procurement,
+            ENDESK supports the commercial needs of dealers,
+            fleet operators and automotive professionals.
+          </p>
+        </div>
+
+        <div class="auto-grid">
+
+          <article class="auto-card">
+            <img
+              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+              alt="Vehicle for dealership and sourcing"
+              loading="lazy"
+            >
+            <div class="auto-card-body">
+              <span class="number">SERVICE 01</span>
+              <h3>Vehicle Sourcing & Dealership</h3>
+              <p>
+                Used-vehicle sourcing and dealership services,
+                supported by relationships within the South African
+                automotive market.
+              </p>
+            </div>
+          </article>
+
+          <article class="auto-card">
+            <img
+              src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=80"
+              alt="Vehicle maintenance and automotive workshop"
+              loading="lazy"
+            >
+            <div class="auto-card-body">
+              <span class="number">SERVICE 02</span>
+              <h3>Automotive Trade & Procurement</h3>
+              <p>
+                A point of contact for supply and sourcing enquiries
+                from dealerships, distributors, technicians,
+                maintenance teams and trade partners.
+              </p>
+            </div>
+          </article>
+
+          <article class="auto-card">
+            <img
+              src="https://images.unsplash.com/photo-1441148345475-03a2e82f9719?auto=format&fit=crop&w=900&q=80"
+              alt="Commercial vehicles"
+              loading="lazy"
+            >
+            <div class="auto-card-body">
+              <span class="number">SERVICE 03</span>
+              <h3>Commercial & Fleet Enquiries</h3>
+              <p>
+                Vehicle-sourcing enquiries for commercial buyers,
+                leasing businesses and rental operators,
+                subject to availability and individual requirements.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OTHER SERVICES -->
+    <section class="section other-services" id="services">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Our Wider Capabilities</span>
+          <h2>Services that support your business.</h2>
+          <p>
+            Alongside automotive, ENDESK offers a wider range
+            of practical commercial and general-supply services.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=800&q=80" alt="Printing & Branding" loading="lazy"></div>
+            <div class="body"><h3>Printing & Branding</h3><p>Vehicle branding, graphic design, T-shirt and mug printing, embroidery, business cards, posters and signage.</p></div>
+          </article>
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Warehousing" loading="lazy"></div>
+            <div class="body"><h3>Warehousing</h3><p>Warehousing and related support for business supply and distribution requirements.</p></div>
+          </article>
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Recruitment" loading="lazy"></div>
+            <div class="body"><h3>Recruitment</h3><p>Recruitment assistance and job-seeker support, including CV preparation, applications and interview readiness.</p></div>
+          </article>
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Travel & Visa Assistance" loading="lazy"></div>
+            <div class="body"><h3>Travel & Visa Assistance</h3><p>Assistance with travel documentation and visa processes for business, tourism, study, work and transit.</p></div>
+          </article>
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Construction & Farming" loading="lazy"></div>
+            <div class="body"><h3>Construction & Farming</h3><p>General supply and business support enquiries relating to construction and farming.</p></div>
+          </article>
+          <article class="service-card has-img">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=800&q=80" alt="Fishing Accessories" loading="lazy"></div>
+            <div class="body"><h3>Fishing Accessories</h3><p>Sourcing and supply enquiries for fishing accessories and related products.</p></div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES GALLERY LOOP -->
+    <section class="gallery" aria-label="ENDESK services">
+      <div class="container section-heading">
+        <span class="eyebrow">Everything Under One Roof</span>
+        <h2>One partner. Many services.</h2>
+        <p>A look across the automotive and general-supply services ENDESK offers.</p>
+      </div>
+      <div class="loop"><div class="loop-track"><div class="tile"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Vehicle Sourcing" loading="lazy"><b><i>ENDESK</i>Vehicle Sourcing</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" alt="Dealership Support" loading="lazy"><b><i>ENDESK</i>Dealership Support</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80" alt="Fleet Enquiries" loading="lazy"><b><i>ENDESK</i>Fleet Enquiries</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=600&q=80" alt="Printing & Branding" loading="lazy"><b><i>ENDESK</i>Printing & Branding</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehousing" loading="lazy"><b><i>ENDESK</i>Warehousing</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80" alt="Recruitment" loading="lazy"><b><i>ENDESK</i>Recruitment</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Travel & Visas" loading="lazy"><b><i>ENDESK</i>Travel & Visas</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Construction" loading="lazy"><b><i>ENDESK</i>Construction</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Farming" loading="lazy"><b><i>ENDESK</i>Farming</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=600&q=80" alt="Fishing Accessories" loading="lazy"><b><i>ENDESK</i>Fishing Accessories</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Vehicle Sourcing" loading="lazy"><b><i>ENDESK</i>Vehicle Sourcing</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" alt="Dealership Support" loading="lazy"><b><i>ENDESK</i>Dealership Support</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80" alt="Fleet Enquiries" loading="lazy"><b><i>ENDESK</i>Fleet Enquiries</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&w=600&q=80" alt="Printing & Branding" loading="lazy"><b><i>ENDESK</i>Printing & Branding</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehousing" loading="lazy"><b><i>ENDESK</i>Warehousing</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80" alt="Recruitment" loading="lazy"><b><i>ENDESK</i>Recruitment</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Travel & Visas" loading="lazy"><b><i>ENDESK</i>Travel & Visas</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Construction" loading="lazy"><b><i>ENDESK</i>Construction</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Farming" loading="lazy"><b><i>ENDESK</i>Farming</b></div><div class="tile"><img src="https://images.unsplash.com/photo-1516939884455-1445c8652f83?auto=format&fit=crop&w=600&q=80" alt="Fishing Accessories" loading="lazy"><b><i>ENDESK</i>Fishing Accessories</b></div></div></div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section values" id="values">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">The Endesk Approach</span>
+          <h2>Built on dependable service.</h2>
+        </div>
+
+        <div class="values-grid">
+          <div class="value">
+            <h3>Customer Focus</h3>
+            <p>
+              Understanding each client's requirements and
+              responding with practical solutions.
+            </p>
+          </div>
+
+          <div class="value">
+            <h3>Reliability</h3>
+            <p>
+              Clear communication, accountability and
+              consistent service delivery.
+            </p>
+          </div>
+
+          <div class="value">
+            <h3>Market Knowledge</h3>
+            <p>
+              Applying experience across the automotive
+              trade and wider commercial sectors.
+            </p>
+          </div>
+
+          <div class="value">
+            <h3>Partnership</h3>
+            <p>
+              Building long-term working relationships
+              with customers and suppliers.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+
+        <div>
+          <span class="eyebrow">Get in Touch</span>
+          <h2>Tell us what your business needs.</h2>
+
+          <p>
+            For vehicle sourcing, procurement, printing,
+            general supply and other business enquiries,
+            contact our team.
+          </p>
+
+          <div class="contact-details">
+
+            <div>
+              <strong>Telephone</strong>
+              <a href="tel:+27626566427">062 656 6427</a>
+            </div>
+
+            <div>
+              <strong>WhatsApp</strong>
+              <a
+                href="https://wa.me/27658427291"
+                target="_blank"
+                rel="noopener noreferrer"
+              >065 842 7291</a>
+            </div>
+
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:info@endesk.co.za">
+                info@endesk.co.za
+              </a>
+              <a href="mailto:endeskvision@gmail.com">
+                endeskvision@gmail.com
+              </a>
+            </div>
+
+            <div>
+              <strong>Location</strong>
+              <span>Johannesburg CBD, South Africa</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- This form opens the visitor's email application.
+             Connect to a server endpoint before production
+             if submissions must happen directly on the site. -->
+        <form class="contact-form" id="enquiry-form">
+
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name *</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="company">Company</label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email address *</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="service">Area of interest</label>
+            <select id="service" name="service">
+              <option>Automotive sourcing</option>
+              <option>Dealership enquiries</option>
+              <option>Commercial / fleet enquiries</option>
+              <option>Automotive procurement</option>
+              <option>Printing & branding</option>
+              <option>Warehousing</option>
+              <option>Recruitment</option>
+              <option>Travel & visas</option>
+              <option>Other services</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Your enquiry *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button class="btn btn-navy" type="submit">
+            Prepare enquiry →
+          </button>
+
+          <p class="form-note">
+            This opens your email application with
+            the enquiry details ready to send.
+          </p>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <a href="#home" class="brand">
+            <span class="brand-symbol">E</span>
+            <span>
+              <span class="brand-name">ENDESK</span>
+              <span class="brand-subtitle">CONGLOMERATE</span>
+            </span>
+          </a>
+
+          <p>
+            Automotive, general supply and business
+            support services in South Africa.
+          </p>
+        </div>
+
+        <div>
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="#about">About Endesk</a>
+            <a href="#automotive">Automotive Services</a>
+            <a href="#audience">Who We Work With</a>
+            <a href="#services">Other Services</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-links">
+            <a href="tel:+27626566427">
+              062 656 6427
+            </a>
+            <a href="mailto:info@endesk.co.za">
+              info@endesk.co.za
+            </a>
+            <a href="https://wa.me/27658427291">
+              WhatsApp
+            </a>
+            <span>Johannesburg CBD, South Africa</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>
+          © <span id="year"></span> ENDESK Conglomerate.
+          All rights reserved.
+        </span>
+        <span>Automotive & General Supply</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menu = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav-links");
+
+    menu.addEventListener("click", function () {
+      const isOpen = nav.classList.toggle("open");
+      menu.setAttribute("aria-expanded", String(isOpen));
+      menu.textContent = isOpen ? "×" : "☰";
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function () {
+        nav.classList.remove("open");
+        menu.setAttribute("aria-expanded", "false");
+        menu.textContent = "☰";
+      });
+    });
+
+    // Current year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Email-based enquiry form
+    document.getElementById("enquiry-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const data = new FormData(this);
+
+        const subject = "ENDESK Website Enquiry: " +
+          data.get("service");
+
+        const body = [
+          "Name: " + (data.get("name") || ""),
+          "Company: " + (data.get("company") || ""),
+          "Email: " + (data.get("email") || ""),
+          "Phone: " + (data.get("phone") || ""),
+          "Service: " + (data.get("service") || ""),
+          "",
+          "Enquiry:",
+          data.get("message") || ""
+        ].join("\n");
+
+        window.location.href =
+          "mailto:info@endesk.co.za" +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(body);
+      });
+
+    // Graceful fallback if a photo fails to load
+    document.querySelectorAll("img").forEach(function (img) {
+      img.addEventListener("error", function () { img.parentElement.classList.add("img-fail"); });
+    });
+  </script>
+
+</body>
+</html>

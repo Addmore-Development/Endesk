@@ -818,6 +818,171 @@
       .travel-actions .btn { flex: 1 1 100%; }
       .hero-pill { font-size: 12px; padding: 8px 14px; }
     }
+  
+    /* ===== Hero services banner (looping) ===== */
+    .hero { min-height: 0; }
+    .hero::after { content: none; }
+
+    .hero-slides { display: grid; position: relative; }
+
+    .hero-slide {
+      grid-area: 1 / 1;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .9s ease, visibility 0s linear .9s;
+    }
+    .hero-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .9s ease, visibility 0s;
+    }
+    .hero-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(90deg, rgba(6,20,31,.98) 0%, rgba(8,28,44,.92) 37%, rgba(9,27,43,.36) 100%);
+    }
+    .hero-slide .hero-image {
+      transform: scale(1.08);
+      transition: transform 9s ease-out;
+    }
+    .hero-slide.is-active .hero-image { transform: scale(1); }
+
+    .hero-slide .hero-inner {
+      min-height: 680px;
+      padding-block: 85px 150px;
+    }
+
+    .hero-slide.is-active .hero-copy > * { animation: heroRise .8s cubic-bezier(.2,.7,.2,1) backwards; }
+    .hero-slide.is-active .hero-copy > :nth-child(1) { animation-delay: .10s; }
+    .hero-slide.is-active .hero-copy > :nth-child(2) { animation-delay: .20s; }
+    .hero-slide.is-active .hero-copy > :nth-child(3) { animation-delay: .30s; }
+    .hero-slide.is-active .hero-copy > :nth-child(4) { animation-delay: .40s; }
+    .hero-slide.is-active .hero-copy > :nth-child(5) { animation-delay: .50s; }
+    .hero-slide.is-active .hero-copy > :nth-child(6) { animation-delay: .60s; }
+    @keyframes heroRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    .hero-slide--svc h1 { font-size: clamp(36px, 4.8vw, 62px); }
+    .hero-slide--svc p + p { margin-top: -6px; }
+
+    .hero-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 26px 0 0; padding: 0; list-style: none;
+    }
+    .hero-chips li {
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(9,25,37,.5);
+      color: #e9eef2;
+      font: 700 12px Manrope, Arial, sans-serif;
+      letter-spacing: .01em;
+    }
+    .hero-chips li::before {
+      content: "";
+      display: inline-block;
+      width: 6px; height: 6px;
+      margin-right: 9px;
+      border-radius: 50%;
+      background: var(--orange);
+      vertical-align: middle;
+    }
+    .hero-slide--svc .hero-actions { margin-top: 28px; }
+
+    /* Controls */
+    .hero-controls {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      z-index: 5;
+      padding-block: 18px 24px;
+      background: linear-gradient(0deg, rgba(6,20,31,.75), transparent);
+    }
+    .hero-controls .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px 24px;
+    }
+    .hero-controls .hero-bottom { margin: 0; }
+
+    .hero-nav { display: flex; align-items: center; gap: 14px; }
+    .hero-count {
+      min-width: 52px;
+      color: #e9eef2;
+      font: 800 12px Manrope, Arial, sans-serif;
+      letter-spacing: .14em;
+    }
+    .hero-dots { display: flex; gap: 6px; }
+    .hero-dot {
+      position: relative;
+      width: 40px; height: 28px;
+      padding: 0; border: 0;
+      background: none;
+      cursor: pointer;
+    }
+    .hero-dot::before,
+    .hero-dot i {
+      content: "";
+      position: absolute;
+      left: 0; top: 12px;
+      height: 4px;
+      border-radius: 2px;
+    }
+    .hero-dot::before { right: 0; background: rgba(255,255,255,.3); transition: background .2s; }
+    .hero-dot:hover::before { background: rgba(255,255,255,.55); }
+    .hero-dot i { width: 0; background: var(--orange); }
+    .hero-dot.is-active i { animation: heroFill var(--dur, 7000ms) linear forwards; }
+    .hero.is-paused .hero-dot.is-active i { animation-play-state: paused; }
+    @keyframes heroFill { to { width: 100%; } }
+
+    .hero-btn {
+      display: grid; place-items: center;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 50%;
+      background: rgba(9,25,37,.5);
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .hero-btn:hover { background: var(--orange); border-color: var(--orange); color: var(--navy-dark); }
+    .hero-btn svg { width: 18px; height: 18px; }
+    .hero-btn .i-play { display: none; }
+    .hero.is-user-paused .hero-btn .i-pause { display: none; }
+    .hero.is-user-paused .hero-btn .i-play { display: block; }
+    .hero-btn:focus-visible, .hero-dot:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+    @media (max-width: 1000px) {
+      .hero-slide .hero-inner { min-height: 640px; }
+    }
+
+    @media (max-width: 760px) {
+      .hero-slide .hero-inner { min-height: 600px; padding-block: 52px 185px; }
+      .hero-slide::after {
+        background: linear-gradient(180deg, rgba(5,20,32,.80) 0%, rgba(5,20,32,.88) 100%);
+      }
+      .hero-slide--svc h1 { font-size: 34px; }
+      .hero-chips { margin-top: 20px; gap: 6px; }
+      .hero-chips li { padding: 6px 11px; font-size: 11.5px; }
+      .hero-slide--svc .hero-actions .btn { flex: 1 1 100%; }
+      .hero-controls { padding-block: 14px 16px; }
+      .hero-controls .container { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .hero-controls .hero-bottom { gap: 4px 16px; font-size: 11.5px; }
+      .hero-nav { width: 100%; justify-content: space-between; gap: 8px; }
+      .hero-dot { width: 28px; }
+      .hero-btn { width: 40px; height: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide, .hero-slide.is-active { transition: none; }
+      .hero-slide .hero-image { transform: none; transition: none; }
+      .hero-slide.is-active .hero-copy > * { animation: none; }
+      .hero-dot.is-active i { animation: none; width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -862,51 +1027,164 @@
   <main>
 
     <!-- HERO -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-roledescription="carousel" aria-label="ENDESK services">
 
-      <img
-        class="hero-image"
-        src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1800&q=85"
-        alt="Automotive industry illustration"
-      >
+      <div class="hero-slides">
 
-      <div class="container hero-inner">
-        <div class="hero-copy">
-
-          <span class="eyebrow">Automotive &amp; Travel Services</span>
-
-          <h1>
-            Moving business<br>
-            <em>forward.</em>
-          </h1>
-
-          <p>
-            ENDESK Conglomerate provides automotive, dealership and
-            sourcing solutions — plus travel and visa assistance —
-            for businesses, trade professionals and individuals
-            across South Africa.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#automotive" class="btn btn-primary">
-              Our Automotive Services →
-            </a>
-
-            <a href="#contact" class="btn btn-outline">
-              Get in Touch
-            </a>
+        <!-- Slide 1: brand intro (original hero content) -->
+        <div class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5">
+          <img class="hero-image" src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1800&q=85" alt="Automotive industry illustration">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Automotive &amp; Travel Services</span>
+              <h1>Moving business<br><em>forward.</em></h1>
+              <p>
+                ENDESK Conglomerate provides automotive, dealership and
+                sourcing solutions — plus travel and visa assistance —
+                for businesses, trade professionals and individuals
+                across South Africa.
+              </p>
+              <div class="hero-actions">
+                <a href="#automotive" class="btn btn-primary">Our Automotive Services →</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+              </div>
+              <a href="#travel" class="hero-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 11l1-1.5 8 .5 4-5.5c.6-.8 1.8-.9 2.4-.3s.5 1.8-.3 2.4L13.5 10l.5 8-1.5 1-2.5-7.5z"/></svg><span>Also: Travel &amp; Visa Assistance</span><b>→</b></a>
+            </div>
           </div>
+        </div>
 
-          <a href="#travel" class="hero-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 11l1-1.5 8 .5 4-5.5c.6-.8 1.8-.9 2.4-.3s.5 1.8-.3 2.4L13.5 10l.5 8-1.5 1-2.5-7.5z"/></svg><span>Also: Travel &amp; Visa Assistance</span><b>→</b></a>
+        <!-- Slide 2: Vehicle sourcing & dealership -->
+        <div class="hero-slide hero-slide--svc" role="group" aria-roledescription="slide" aria-label="2 of 5" aria-hidden="true" inert>
+          <img class="hero-image" src="https://images.unsplash.com/photo-1572811298797-9eecadf6cb24?auto=format&fit=crop&w=1800&q=85" alt="Used vehicle sourced for a dealership" loading="lazy">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Service 01 · Vehicle Sourcing &amp; Dealership</span>
+              <h1>The right used vehicle, <em>sourced for you.</em></h1>
+              <p>
+                From everyday hatchbacks and sedans to the double-cab
+                bakkies South Africa runs on, we source quality used
+                vehicles through established relationships in the local
+                automotive market.
+              </p>
+              <ul class="hero-chips">
+                <li>Used-vehicle sourcing</li>
+                <li>Dealership support</li>
+                <li>Local market relationships</li>
+              </ul>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-service="Automotive sourcing">Request a Vehicle →</a>
+                <a href="#automotive" class="btn btn-outline">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- Slide 3: Trade & procurement -->
+        <div class="hero-slide hero-slide--svc" role="group" aria-roledescription="slide" aria-label="3 of 5" aria-hidden="true" inert>
+          <img class="hero-image" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1800&q=85" alt="Automotive workshop and parts supply" loading="lazy">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Service 02 · Automotive Trade &amp; Procurement</span>
+              <h1>One call for the <em>supply you need.</em></h1>
+              <p>
+                Workshops, technicians, distributors and maintenance teams
+                get a single, responsive point of contact for parts and
+                supply enquiries — so vehicles stay on the road and jobs
+                stay on schedule.
+              </p>
+              <ul class="hero-chips">
+                <li>Parts &amp; supply enquiries</li>
+                <li>Workshops &amp; technicians</li>
+                <li>Distributors &amp; wholesalers</li>
+              </ul>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-service="Automotive procurement">Enquire Now →</a>
+                <a href="#audience" class="btn btn-outline">Who We Work With</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Commercial & fleet -->
+        <div class="hero-slide hero-slide--svc" role="group" aria-roledescription="slide" aria-label="4 of 5" aria-hidden="true" inert>
+          <img class="hero-image" src="https://images.unsplash.com/photo-1699862324850-2c5480f4f6a0?auto=format&fit=crop&w=1800&q=85" alt="Commercial vehicles for fleet and rental operators" loading="lazy">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Service 03 · Commercial &amp; Fleet Enquiries</span>
+              <h1>Vehicles for business <em>that keeps moving.</em></h1>
+              <p>
+                Commercial buyers, leasing companies and rental operators
+                can bring their vehicle-sourcing requirements to ENDESK —
+                from light delivery vehicles to fleet additions, subject to
+                availability and individual requirements.
+              </p>
+              <ul class="hero-chips">
+                <li>Commercial buyers</li>
+                <li>Leasing businesses</li>
+                <li>Rental operators</li>
+              </ul>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-service="Commercial / fleet enquiries">Fleet Enquiry →</a>
+                <a href="#automotive" class="btn btn-outline">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Travel & visa -->
+        <div class="hero-slide hero-slide--svc" role="group" aria-roledescription="slide" aria-label="5 of 5" aria-hidden="true" inert>
+          <img class="hero-image" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1800&q=85" alt="Aircraft in flight — travel and visa assistance" loading="lazy">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <span class="eyebrow">Service 04 · Travel &amp; Visa Assistance</span>
+              <h1>Your documents in order. <em>Your journey, sorted.</em></h1>
+              <p>
+                Travelling from South Africa for a meeting, a holiday, a
+                course or a new role? ENDESK assists with travel
+                documentation and visa processes so you can plan with
+                confidence.
+              </p>
+              <ul class="hero-chips">
+                <li>Business</li>
+                <li>Tourism</li>
+                <li>Study</li>
+                <li>Work</li>
+                <li>Transit</li>
+              </ul>
+              <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-service="Travel &amp; visas">Enquire About Visas →</a>
+                <a href="https://wa.me/27658427291?text=Hi%20ENDESK%2C%20I%27d%20like%20help%20with%20travel%20and%20visa%20assistance." class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner controls -->
+      <div class="hero-controls">
+        <div class="container">
           <div class="hero-bottom">
             <span>Established 2006</span>
             <span>Registered 2014</span>
             <span>Johannesburg, South Africa</span>
           </div>
-
+          <div class="hero-nav">
+            <span class="hero-count" aria-live="off">01 / 05</span>
+            <div class="hero-dots">
+              <button class="hero-dot is-active" type="button" aria-label="Go to slide 1: Welcome"><i></i></button>
+              <button class="hero-dot" type="button" aria-label="Go to slide 2: Vehicle sourcing and dealership"><i></i></button>
+              <button class="hero-dot" type="button" aria-label="Go to slide 3: Trade and procurement"><i></i></button>
+              <button class="hero-dot" type="button" aria-label="Go to slide 4: Commercial and fleet"><i></i></button>
+              <button class="hero-dot" type="button" aria-label="Go to slide 5: Travel and visas"><i></i></button>
+            </div>
+            <button class="hero-btn" type="button" data-hero-prev aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button class="hero-btn" type="button" data-hero-next aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+            <button class="hero-btn" type="button" data-hero-toggle aria-label="Pause or play slideshow"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
         </div>
       </div>
+
     </section>
 
     <!-- SERVICES TICKER -->
@@ -1412,6 +1690,82 @@
     document.querySelectorAll("img").forEach(function (img) {
       img.addEventListener("error", function () { img.parentElement.classList.add("img-fail"); });
     });
+  
+    // Hero services banner
+    (function () {
+      var hero = document.getElementById("home");
+      if (!hero) return;
+      var slides = [].slice.call(hero.querySelectorAll(".hero-slide"));
+      var dots = [].slice.call(hero.querySelectorAll(".hero-dot"));
+      var counter = hero.querySelector(".hero-count");
+      var DUR = 7000, index = 0;
+      var hover = false, focus = false, user = false;
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      hero.style.setProperty("--dur", DUR + "ms");
+      if (reduce) { user = true; hero.classList.add("is-user-paused"); }
+
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+      function syncPause() {
+        hero.classList.toggle("is-paused", hover || focus || user);
+        hero.classList.toggle("is-user-paused", user);
+      }
+
+      function show(n) {
+        index = (n + slides.length) % slides.length;
+        slides.forEach(function (s, k) {
+          var on = k === index;
+          s.classList.toggle("is-active", on);
+          s.setAttribute("aria-hidden", on ? "false" : "true");
+          if (on) s.removeAttribute("inert"); else s.setAttribute("inert", "");
+        });
+        dots.forEach(function (d, k) {
+          var on = k === index;
+          d.classList.toggle("is-active", on);
+          if (on) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
+          var fill = d.querySelector("i");
+          if (fill) { fill.style.animation = "none"; void fill.offsetWidth; fill.style.animation = ""; }
+        });
+        if (counter) counter.textContent = pad(index + 1) + " / " + pad(slides.length);
+      }
+
+      // The progress bar in the active dot drives autoplay (and pauses with it)
+      hero.addEventListener("animationend", function (e) {
+        if (e.animationName === "heroFill" && e.target.closest(".hero-dot")) show(index + 1);
+      });
+
+      dots.forEach(function (d, k) { d.addEventListener("click", function () { show(k); }); });
+      hero.querySelector("[data-hero-prev]").addEventListener("click", function () { show(index - 1); });
+      hero.querySelector("[data-hero-next]").addEventListener("click", function () { show(index + 1); });
+      hero.querySelector("[data-hero-toggle]").addEventListener("click", function () { user = !user; syncPause(); });
+
+      hero.addEventListener("mouseenter", function () { hover = true; syncPause(); });
+      hero.addEventListener("mouseleave", function () { hover = false; syncPause(); });
+      hero.addEventListener("focusin", function () { focus = true; syncPause(); });
+      hero.addEventListener("focusout", function () { focus = false; syncPause(); });
+
+      hero.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") show(index - 1);
+        if (e.key === "ArrowRight") show(index + 1);
+      });
+
+      // Swipe on touch screens
+      var startX = null, startY = null;
+      hero.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+      }, { passive: true });
+      hero.addEventListener("touchend", function (e) {
+        if (startX === null) return;
+        var dx = e.changedTouches[0].clientX - startX;
+        var dy = e.changedTouches[0].clientY - startY;
+        startX = startY = null;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(index + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      syncPause();
+      show(0);
+    })();
   </script>
 
 </body>

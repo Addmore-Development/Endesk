@@ -839,12 +839,18 @@
       transition: opacity .9s ease, visibility 0s;
     }
     .hero-slide::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(90deg, rgba(6,20,31,.98) 0%, rgba(8,28,44,.92) 37%, rgba(9,27,43,.36) 100%);
-    }
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6,20,31,.98) 0%,
+    rgba(8,28,44,.92) 30%,
+    rgba(9,27,43,.05) 50%,
+    rgba(9,27,43,.05) 100%
+  );
+}
     .hero-slide .hero-image {
       transform: scale(1.08);
       transition: transform 9s ease-out;
@@ -987,17 +993,7 @@
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="container">
-      <span>Monday – Friday: 8:30am – 5:00pm</span>
-      <span>
-        <a href="mailto:info@endesk.co.za">info@endesk.co.za</a>
-        &nbsp; | &nbsp;
-        <a href="tel:+27626566427">062 656 6427</a>
-      </span>
-    </div>
-  </div>
+  
 
   <!-- NAVIGATION -->
   <header class="site-header">
@@ -1045,10 +1041,10 @@
                 across South Africa.
               </p>
               <div class="hero-actions">
-                <a href="#automotive" class="btn btn-primary">Our Automotive Services →</a>
+                <a href="#automotive" class="btn btn-primary">Our Automotive Services</a>
                 <a href="#contact" class="btn btn-outline">Get in Touch</a>
               </div>
-              <a href="#travel" class="hero-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 11l1-1.5 8 .5 4-5.5c.6-.8 1.8-.9 2.4-.3s.5 1.8-.3 2.4L13.5 10l.5 8-1.5 1-2.5-7.5z"/></svg><span>Also: Travel &amp; Visa Assistance</span><b>→</b></a>
+              <a href="#travel" class="hero-pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 13.5 3 11l1-1.5 8 .5 4-5.5c.6-.8 1.8-.9 2.4-.3s.5 1.8-.3 2.4L13.5 10l.5 8-1.5 1-2.5-7.5z"/></svg><span>Also: Travel &amp; Visa Assistance</span><b></b></a>
             </div>
           </div>
         </div>
@@ -1072,7 +1068,7 @@
                 <li>Local market relationships</li>
               </ul>
               <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary" data-service="Automotive sourcing">Request a Vehicle →</a>
+                <a href="#contact" class="btn btn-primary" data-service="Automotive sourcing">Request a Vehicle</a>
                 <a href="#automotive" class="btn btn-outline">Learn More</a>
               </div>
             </div>
@@ -1098,7 +1094,7 @@
                 <li>Distributors &amp; wholesalers</li>
               </ul>
               <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary" data-service="Automotive procurement">Enquire Now →</a>
+                <a href="#contact" class="btn btn-primary" data-service="Automotive procurement">Enquire Now</a>
                 <a href="#audience" class="btn btn-outline">Who We Work With</a>
               </div>
             </div>
@@ -1124,7 +1120,7 @@
                 <li>Rental operators</li>
               </ul>
               <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary" data-service="Commercial / fleet enquiries">Fleet Enquiry →</a>
+                <a href="#contact" class="btn btn-primary" data-service="Commercial / fleet enquiries">Fleet Enquiry</a>
                 <a href="#automotive" class="btn btn-outline">Learn More</a>
               </div>
             </div>
@@ -1152,7 +1148,7 @@
                 <li>Transit</li>
               </ul>
               <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary" data-service="Travel &amp; visas">Enquire About Visas →</a>
+                <a href="#contact" class="btn btn-primary" data-service="Travel &amp; visas">Enquire About Visas</a>
                 <a href="https://wa.me/27658427291?text=Hi%20ENDESK%2C%20I%27d%20like%20help%20with%20travel%20and%20visa%20assistance." class="btn btn-outline" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
               </div>
             </div>
@@ -1374,7 +1370,7 @@
             <ul class="travel-types" aria-label="Travel purposes we assist with"><li><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span>Business</span></li><li><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><span>Tourism</span></li><li><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H20v14H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20"/></svg></span><span>Study</span></li><li><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="2.5"/><path d="M7.5 17c.8-2 2.4-3 4.5-3s3.7 1 4.5 3"/></svg></span><span>Work</span></li><li><span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M6 17V9l6-4 6 4v8M10 17v-4h4v4"/></svg></span><span>Transit</span></li></ul>
 
             <div class="travel-actions">
-              <a href="#contact" class="btn btn-primary" data-service="Travel &amp; visas">Enquire about travel &amp; visas →</a>
+              <a href="#contact" class="btn btn-primary" data-service="Travel &amp; visas">Enquire about travel &amp; visas</a>
               <a href="https://wa.me/27658427291?text=Hi%20ENDESK%2C%20I%27d%20like%20help%20with%20travel%20and%20visa%20assistance." class="btn btn-navy" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
             </div>
           </div>
@@ -1557,7 +1553,7 @@
           </div>
 
           <button class="btn btn-navy" type="submit">
-            Prepare enquiry →
+            Prepare enquiry
           </button>
 
           <p class="form-note">
@@ -1598,21 +1594,16 @@
           </div>
         </div>
 
-        <div>
-          <h4>Contact</h4>
-          <div class="footer-links">
-            <a href="tel:+27626566427">
-              062 656 6427
-            </a>
-            <a href="mailto:info@endesk.co.za">
-              info@endesk.co.za
-            </a>
-            <a href="https://wa.me/27658427291">
-              WhatsApp
-            </a>
-            <span>Johannesburg CBD, South Africa</span>
-          </div>
-        </div>
+     <div>
+  <h4>Contact</h4>
+  <div class="footer-links">
+    <span>Monday – Friday: 8:30am – 5:00pm</span>
+    <a href="mailto:info@endesk.co.za">info@endesk.co.za</a>
+    <a href="tel:+27626566427">062 656 6427</a>
+    <a href="https://wa.me/27658427291">WhatsApp</a>
+    <span>Johannesburg CBD, South Africa</span>
+  </div>
+</div>
 
       </div>
 
